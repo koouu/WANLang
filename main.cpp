@@ -12,7 +12,7 @@ enum TokenKind{
 int main(int argc,char **argv){
 	
   if (argc != 2) {
-    printf("因数が足りません\n");
+    printf("引数が足りません\n");
     return 1;
   }
 
@@ -20,7 +20,24 @@ int main(int argc,char **argv){
 	printf("using namespace std;\n");
   printf("int main(){\n");
   printf("	cout<<");
-	printf("%s",argv[1]);
+	char *p=argv[1];
+	while(*p){
+		
+		if(p[0]==-17&&p[1]==-68&&p[2]<=-103&&p[2]>=-112){
+				printf("%d",(int)p[2]+112);
+		}
+
+		if(p[0]==-17&&p[1]==-68&&p[2]==-117){
+			printf("+");
+		}
+		if(p[0]==-29&&p[1]==-125&&p[2]==-68){
+			printf("-");
+		}
+
+		p++;
+		p++;
+		p++;
+	}
 
 	printf("<<endl;\n");
   printf("	return 0;\n");
