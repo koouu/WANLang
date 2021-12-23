@@ -131,6 +131,7 @@ public:
 	bool isFullSpace(char *p);
 	bool isFullDigit(char *p);
 	bool isFullAdd(char *p);
+	bool isFullMul(char *p);
 	vector<Token> getTokens();
 	void outCppSource();
 	~Analysis();
@@ -141,6 +142,28 @@ Analysis::Analysis(char *data)
 	this->data=data;
 	s="";
 }
+bool Analysis::isFullMul(char *p){
+	char fadd[]="＊";
+	char fsub[]="・";
+	if(*p==fadd[0]){
+		
+		p++;
+		if(*p!=fadd[1])return 0;
+		p++;
+		if(*p!=fadd[2])return 0;
+		return 1;
+	}
+	if(*p==fsub[0]){
+		
+		p++;
+		if(*p!=fsub[1])return 0;
+		p++;
+		if(*p!=fsub[2])return 0;
+		return 1;
+
+	}
+	return 0;
+};
 
 
 
@@ -151,6 +174,12 @@ void Analysis::doAnalysis(){
 	while(*p){
 		//printf("%s\n",p);
 		if(isFullSpace(p)){
+			p+=3;
+			continue;
+		}
+		if(isFullMul(p)){
+			Token t(eRESERVED, token, p);
+			tokens.push_back(t);
 			p+=3;
 			continue;
 		}
@@ -234,6 +263,13 @@ void Analysis::outCppSource(){
 			printf("%d",tokens[i].getval());
 		}
 		if(tokens[i].getkind()==eRESERVED){
+			if(tokens[i].isThisChar("＊")){
+				printf("%c",'*');
+			}
+			if(tokens[i].isThisChar("・")){
+				printf("%c",'/');
+			}
+			
 			if(tokens[i].isThisChar("＋")){
 				printf("%c",'+');
 			}
