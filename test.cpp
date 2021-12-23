@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
 int main(){
-	cout<<123-23<<endl;
+	cout<<10+10<<endl;
 	return 0;
 }
