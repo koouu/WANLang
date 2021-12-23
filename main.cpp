@@ -267,26 +267,7 @@ int main(int argc,char **argv){
   printf("	cout<<");
 	
 	analysis->outCppSource();
-	/*
-	while(*p){
-		
-		if(p[0]==-17&&p[1]==-68&&p[2]<=-103&&p[2]>=-112){
-				printf("%d",(int)p[2]+112);
-		}
-
-		if(p[0]==-17&&p[1]==-68&&p[2]==-117){
-			printf("+");
-		}
-		if(p[0]==-29&&p[1]==-125&&p[2]==-68){
-			printf("-");
-		}
-
-		p++;
-		p++;
-		p++;
-	}
-	*/
-
+	
 	printf("<<endl;\n");
   printf("	return 0;\n");
   printf("}\n");
