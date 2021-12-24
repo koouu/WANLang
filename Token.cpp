@@ -62,12 +62,12 @@ ETokenKind Token::getkind(){
 bool Token::isThisChar(string c){
 	
 	char *c2=str;
-	if(c[0]!=*c2)return 0;
-	c2++;
-	if(c[1]!=*c2)return 0;
-	c2++;
-	if(c[2]!=*c2)return 0;
+	for(int i=0;i<c.size();i++){
+		if(c[i]!=*c2)return 0;
+		c2++;
+	}
 	return 1;
+	
 }
 
 Token::~Token()

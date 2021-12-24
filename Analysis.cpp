@@ -79,6 +79,28 @@ void Analysis::outCppSource(){
 			printf("%d",tokens[i].getval());
 		}
 		if(tokens[i].getkind()==eRESERVED){
+			//2文字
+			if(tokens[i].isThisChar("＜＝")){
+				printf("%s","<=");
+			}
+			if(tokens[i].isThisChar("＞＝")){
+				printf("%s",">=");
+			}
+			if(tokens[i].isThisChar("！＝")){
+				printf("%s","!=");
+			}
+			if(tokens[i].isThisChar("＝＝")){
+				printf("%s","==");
+			}
+
+			//1文字
+			if(tokens[i].isThisChar("＜")){
+				printf("%c",'<');
+			}
+			if(tokens[i].isThisChar("＞")){
+				printf("%c",'>');
+			}
+
 			if(tokens[i].isThisChar("（")){
 				printf("%c",'(');
 			}
