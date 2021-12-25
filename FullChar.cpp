@@ -40,11 +40,62 @@ bool isRESERVED1(char *p){
 	return 0;
 }
 
+bool isFullJP(char *p){
+	if(*p==-29){
+		p++;
+		//あ~み&&む~ん
+		if(*p!=-127&&*p!=-126)return 0;
+		p++;
+		if((*p<-127||*p>-65)&&(*p<-128||*p>-109))return 0;
+		p++;
+		return 1;
+	}
+		
+	return 0;
+}
+
+bool isIdentifier(char *&p){
+	bool f=0;
+	while(1){
+		char *p2=p;
+		
+		p2=p;
+		if(*p2==-29){
+			p2++;
+			//あ~み&&む~ん
+			if(*p2!=-127&&*p2!=-126)break;
+			p2++;
+			if((*p2<-127||*p2>-65)&&(*p2<-128||*p2>-109))break;
+			p2++;
+			p+=3;
+			f=1;
+			continue;
+		}
+		
+		//数字
+		if(*p2==-17){
+			if(f!=1)break;
+			p2++;
+			if(*p2!=-68)break;
+			p2++;
+			if((*p)+112<0||(*p)+112>9)break;
+			p2++;
+			p+=3;
+			continue;
+		}
+		break;
+		
+	}
+	
+	return f;
+	
+};
+
 int getnum(char *&p){
 	int n=0;
 	
 	while(*p){
-		char *p2=p;\
+		char *p2=p;
 		if(*p2!=-17)break;
 		p2++;
 		if(*p2!=-68)break;

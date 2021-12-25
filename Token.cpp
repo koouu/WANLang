@@ -1,8 +1,10 @@
 #include <iostream>
+#include "FullChar.cpp"
 using namespace std;
 
 enum ETokenKind{
 	eRESERVED,	// 記号
+	eIDENT,		// 識別子
   eNUM, 			// 整数トークン
   eEOF, 			// 入力の終わりを表すトークン
 	eSTART,			//開始
@@ -25,6 +27,7 @@ public:
 	ETokenKind getkind();
 	bool isThisChar(string c);
 	void setnext(Token *t);
+	string getIdentifier();
 	~Token();
 };
 
@@ -57,6 +60,17 @@ int Token::getval()
 
 ETokenKind Token::getkind(){
 	return kind;
+}
+
+string Token::getIdentifier(){
+	string s="";
+	while(isFullJP(str)||isFullDigit(str)){
+		for(int i=0;i<3;i++){
+			s+=*str;
+			str++;
+		}
+	}
+	return s;
 }
 
 bool Token::isThisChar(string c){

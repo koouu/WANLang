@@ -57,6 +57,16 @@ void Analysis::doAnalysis(){
 			p+=3;
 			continue;
 		}
+		char *p2=p;
+		if(isIdentifier(p2)){
+			Token t(eIDENT, p);
+			p=p2;
+			tokens.push_back(t);
+			continue;
+		}
+
+
+
 		if(isFullDigit(p)){
 			//printf("dig\n");
 			Token t(eNUM, p);
@@ -82,7 +92,11 @@ vector<Token> Analysis::getTokens(){
 void Analysis::outCppSource(){
 	char *p=data;
 	int i=0;
+	
 	while(tokens[i].getkind()!=eEOF){
+		if(tokens[i].getkind()==eIDENT){
+			cout<<tokens[i].getIdentifier();
+		}
 		if(tokens[i].getkind()==eNUM){
 			printf("%d",tokens[i].getval());
 		}
