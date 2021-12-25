@@ -53,6 +53,29 @@ bool isFullJP(char *p){
 		
 	return 0;
 }
+int getFullJPNum(char *p){
+	int ret=0;
+	if(isFullJP(p)){
+		p++;
+		ret+=127+(*p);
+		p++;
+		ret+=((128+(*p))<<1);
+		//0~9は数字だから
+		ret+=10;
+	}else{
+		p+=2;
+		ret=(*p)+112;
+	}
+	
+	
+	return ret;
+
+}
+
+int getFullNum(char *p){
+	p+=2;
+	return (*p)+112;
+}
 
 bool isIdentifier(char *&p){
 	bool f=0;

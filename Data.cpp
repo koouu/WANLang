@@ -1,4 +1,5 @@
 #include "Variable.cpp"
+#include <string>
 
 template<class T>
 class Singleton {
@@ -19,24 +20,24 @@ class Data: public Singleton<Data>
 private:
 	friend Singleton<Data>;
 	Data();
-	Variable *v[2];
+	Variable *v;
 	int cnt=0;
 	~Data();
 public:
-	void setVariable(char *c){
-
-	}
+	void setVariable(char *c);
 };
 
 Data::Data(/* args */)
 {
-	char *c;
-	*c=-127;
-	v[0]=new Variable(c);
-	*c=-126;
-	v[1]=new Variable(c);
+	cnt=0;
+	v=new Variable();
 }
 
+void Data::setVariable(char *c){
+	string var="var"+to_string(cnt);
+	v->setVariable(c,var);
+	
+}
 Data::~Data()
 {
 }
