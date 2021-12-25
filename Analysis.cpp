@@ -41,6 +41,14 @@ void Analysis::doAnalysis(){
 			p+=3;
 			continue;
 		}
+
+		if(isRESERVED2(p)){
+			//printf("add\n");
+			Token t(eRESERVED, p);
+			tokens.push_back(t);
+			p+=6;
+			continue;
+		}
 		
 		if(isRESERVED1(p)){
 			//printf("add\n");
@@ -83,41 +91,41 @@ void Analysis::outCppSource(){
 			if(tokens[i].isThisChar("＜＝")){
 				printf("%s","<=");
 			}
-			if(tokens[i].isThisChar("＞＝")){
+			else if(tokens[i].isThisChar("＞＝")){
 				printf("%s",">=");
 			}
-			if(tokens[i].isThisChar("！＝")){
+			else if(tokens[i].isThisChar("！＝")){
 				printf("%s","!=");
 			}
-			if(tokens[i].isThisChar("＝＝")){
+			else if(tokens[i].isThisChar("＝＝")){
 				printf("%s","==");
 			}
 
 			//1文字
-			if(tokens[i].isThisChar("＜")){
+			else if(tokens[i].isThisChar("＜")){
 				printf("%c",'<');
 			}
-			if(tokens[i].isThisChar("＞")){
+			else if(tokens[i].isThisChar("＞")){
 				printf("%c",'>');
 			}
 
-			if(tokens[i].isThisChar("（")){
+			else if(tokens[i].isThisChar("（")){
 				printf("%c",'(');
 			}
-			if(tokens[i].isThisChar("）")){
+			else if(tokens[i].isThisChar("）")){
 				printf("%c",')');
 			}
-			if(tokens[i].isThisChar("＊")){
+			else if(tokens[i].isThisChar("＊")){
 				printf("%c",'*');
 			}
-			if(tokens[i].isThisChar("・")){
+			else if(tokens[i].isThisChar("・")){
 				printf("%c",'/');
 			}
 			
-			if(tokens[i].isThisChar("＋")){
+			else if(tokens[i].isThisChar("＋")){
 				printf("%c",'+');
 			}
-			if(tokens[i].isThisChar("ー")){
+			else if(tokens[i].isThisChar("ー")){
 				printf("%c",'-');
 			}
 		}
