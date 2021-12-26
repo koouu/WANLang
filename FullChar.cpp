@@ -1,3 +1,4 @@
+#pragma once
 #include<iostream>
 using namespace std;
 
@@ -6,10 +7,10 @@ const string RESERVED_LIST_1="＋ー＊・（）＜＞";
 //2もじのやつ
 const string RESERVED_LIST_2="＜＝＞＝＝＝！＝";
 
-bool isRESERVED2(char *p){
+bool isRESERVED2(const char *p){
 	int fsize=6;
 	for(int i=0;i<RESERVED_LIST_2.size()/fsize;i++){
-		char *p2=p;
+		const char *p2=p;
 		bool f=1;
 		for(int j=0;j<fsize;j++){
 			if(RESERVED_LIST_2[i*fsize+j]!=*p2){
@@ -23,10 +24,12 @@ bool isRESERVED2(char *p){
 	return 0;
 }
 
-bool isRESERVED1(char *p){
+
+
+bool isRESERVED1(const char *p){
 	int fsize=3;
 	for(int i=0;i<RESERVED_LIST_1.size()/fsize;i++){
-		char *p2=p;
+		const char *p2=p;
 		bool f=1;
 		for(int j=0;j<fsize;j++){
 			if(RESERVED_LIST_1[i*fsize+j]!=*p2){
@@ -40,7 +43,7 @@ bool isRESERVED1(char *p){
 	return 0;
 }
 
-bool isFullJP(char *p){
+bool isFullJP(const char *p){
 	if(*p==-29){
 		p++;
 		//あ~み&&む~ん
@@ -53,7 +56,7 @@ bool isFullJP(char *p){
 		
 	return 0;
 }
-int getFullJPNum(char *p){
+int getFullJPNum(const char *p){
 	int ret=0;
 	if(isFullJP(p)){
 		p++;
@@ -72,15 +75,15 @@ int getFullJPNum(char *p){
 
 }
 
-int getFullNum(char *p){
+int getFullNum(const char *p){
 	p+=2;
 	return (*p)+112;
 }
 
-bool isIdentifier(char *&p){
+bool isIdentifier(const char *&p){
 	bool f=0;
 	while(1){
-		char *p2=p;
+		const char *p2=p;
 		
 		p2=p;
 		if(*p2==-29){
@@ -114,11 +117,11 @@ bool isIdentifier(char *&p){
 	
 };
 
-int getnum(char *&p){
+int getnum(const char *&p){
 	int n=0;
 	
 	while(*p){
-		char *p2=p;
+		const char *p2=p;
 		if(*p2!=-17)break;
 		p2++;
 		if(*p2!=-68)break;
@@ -130,7 +133,7 @@ int getnum(char *&p){
 	}
 	return n;
 }
-bool isFullPar(char *p){
+bool isFullPar(const char *p){
 	if(*p!=-17)return 0;
 	p++;
 	if(*p!=-68)return 0;
@@ -140,9 +143,9 @@ bool isFullPar(char *p){
 	
 };
 
-bool isFullMul(char *p){
-	char fadd[]="＊";
-	char fsub[]="・";
+bool isFullMul(const char *p){
+	const char fadd[]="＊";
+	const char fsub[]="・";
 	if(*p==fadd[0]){
 		
 		p++;
@@ -163,8 +166,8 @@ bool isFullMul(char *p){
 	return 0;
 };
 
-bool isFullSpace(char *p){
-	char x[]="　";
+bool isFullSpace(const char *p){
+	const char x[]="　";
 	if(*p!=x[0])return 0;
 	p++;
 	if(*p!=x[1])return 0;
@@ -173,9 +176,9 @@ bool isFullSpace(char *p){
 	return 1;
 };
 
-bool isFullDigit(char *p){
+bool isFullDigit(const char *p){
 	//全角数字は1bit目-17,2bit目-68,3bit目-112~-103(0~9)
-	char x[]="　";
+	const char x[]="　";
 	if(*p!=-17)return 0;
 	p++;
 	if(*p!=-68)return 0;
@@ -186,10 +189,10 @@ bool isFullDigit(char *p){
 	return 1;
 };
 
-bool isFullAdd(char *p){
+bool isFullAdd(const char *p){
 	//全角＋ーは大きく異なる
-	char fadd[]="＋";
-	char fsub[]="ー";
+	const char fadd[]="＋";
+	const char fsub[]="ー";
 	//printf("%d,%d\n",*p,fadd[0]);
 	if(*p==fadd[0]){
 		
@@ -212,17 +215,19 @@ bool isFullAdd(char *p){
 };
 
 
-bool compareFullChar(char *p,string s){
+bool compareFullChar(const char *p,string s){
+	
 	for(int i=0;i<s.size();i++){
 		if(!(*p))return 0;
 		if(*p!=s[i])return 0;
+		p++;
 	}
 	return 1;
 }
 
 
 
-bool isFullCom(char *p){
+bool isFullCom(const char *p){
 	//全角＋ーは大きく異なる
 	if(*p!=-17)return 0;
 	p++;

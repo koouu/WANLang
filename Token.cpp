@@ -16,14 +16,14 @@ private:
 	ETokenKind kind; // トークンの型
   Token *next;    // 次の入力トークン
   int val;        // kindがTK_NUMの場合、その数値
-  char *str;      // トークン文字列
+  const char *str;      // トークン文字列
 	
 public:
-	Token(ETokenKind kind, char *str);
+	Token(ETokenKind kind, const char *str);
 	void setval(int val);
 	Token getnext();
 	int getval();
-	char *getstr();
+	const char *getstr();
 	ETokenKind getkind();
 	bool isThisChar(string c);
 	void setnext(Token *t);
@@ -31,13 +31,13 @@ public:
 	~Token();
 };
 
-Token::Token(ETokenKind kind, char *str)
+Token::Token(ETokenKind kind, const char *str)
 {	
 
 		this->kind=kind;
 		this->str=str;
 }
-char*Token::getstr(){
+const char*Token::getstr(){
 	return str;
 };
 void Token::setnext(Token *t){
@@ -75,7 +75,7 @@ string Token::getIdentifier(){
 
 bool Token::isThisChar(string c){
 	
-	char *c2=str;
+	const char *c2=str;
 	for(int i=0;i<c.size();i++){
 		if(c[i]!=*c2)return 0;
 		c2++;

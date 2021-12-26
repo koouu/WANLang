@@ -9,13 +9,13 @@ using namespace std;
 
 class Analysis{
 private:
-	char *data;
+	const char *data;
 	string s;
 	//Token *head;
 	//Node node;
 	vector<Token> tokens;
 public:
-	Analysis(char *data);
+	Analysis(const char *data);
 	void doAnalysis();
 	vector<Token> getTokens();
 	void outCppSource();
@@ -23,7 +23,7 @@ public:
 };
 
 
-Analysis::Analysis(char *data)
+Analysis::Analysis(const char *data)
 {
 	this->data=data;
 	s="";
@@ -33,9 +33,9 @@ Analysis::Analysis(char *data)
 
 
 void Analysis::doAnalysis(){
-	char *p=data;
+	const char *p=data;
 	
-	while(*p){
+	while(!compareFullChar(p,"；")){
 		printf("%s\n",p);
 		if(isFullSpace(p)){
 			p+=3;
@@ -57,7 +57,7 @@ void Analysis::doAnalysis(){
 			p+=3;
 			continue;
 		}
-		char *p2=p;
+		const char *p2=p;
 		if(isIdentifier(p2)){
 			Token t(eIDENT, p);
 			p=p2;
@@ -90,7 +90,7 @@ vector<Token> Analysis::getTokens(){
 
 
 void Analysis::outCppSource(){
-	char *p=data;
+	const char *p=data;
 	int i=0;
 	
 	while(tokens[i].getkind()!=eEOF){

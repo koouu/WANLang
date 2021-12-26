@@ -24,8 +24,8 @@ private:
 	int cnt=0;
 	~Data();
 public:
-	void setVariable(char *c);
-	string getVariable(char *c);
+	void setVariable(const char *c);
+	string getVariable(const char *c);
 };
 
 Data::Data(/* args */)
@@ -34,13 +34,13 @@ Data::Data(/* args */)
 	v=new Variable();
 }
 
-void Data::setVariable(char *c){
+void Data::setVariable(const char *c){
 	string var="var"+to_string(cnt);
 	v->setVariable(c,var);
 	cnt++;
 }
 
-string Data::getVariable(char *c){
+string Data::getVariable(const char *c){
 	return v->getVariableName(c);
 }
 Data::~Data()

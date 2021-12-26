@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <fstream>
+#include <string>
 
 #include "Analysis.cpp"
 
@@ -14,7 +16,23 @@ int main(int argc,char **argv){
     printf("引数が足りません\n");
     return 1;
   }
-	char *p=argv[1];
+	ifstream ifs(argv[1]);
+	if (!ifs)
+  {
+  	std::cout << "ファイルが開けませんでした。" << std::endl;
+    std::cin.get();
+    return 0;
+  }
+	const char *txt;
+	
+	string data="";
+  while (!ifs.eof()){
+		string buf;
+    getline(ifs, buf);
+    data += buf + "\n";
+  }
+	const char *p;
+	p=data.c_str();
 	Analysis *analysis=new Analysis(p);
 	analysis->doAnalysis();
 
