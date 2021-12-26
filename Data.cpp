@@ -40,6 +40,8 @@ Data::Data(/* args */)
 	v->setVariable("わんこ","main");
 	v->setVariable("むれ","vector");
 	v->setVariable("ついか","push_back");
+	v->setVariable("よし","if");
+	v->setVariable("まて","else");
 	
 }
 
