@@ -29,6 +29,7 @@ bool Variable::setVariable(const char *p,string name){
 	
 	
 	p+=3;
+	//printf("s:\n%s\n",p);
 	if(*p){
 		return next[nextnum]->setVariable(p,name);
 	}else{
@@ -56,7 +57,7 @@ bool Variable::checkVariableName(const char *p){
 
 Variable::~Variable()
 {
-	
+
 }
 
 

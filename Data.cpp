@@ -33,8 +33,9 @@ Data::Data(/* args */)
 	cnt=0;
 	v=new Variable();
 	v->setVariable("わん","cout");
-	v->setVariable("ぷーどる","string");
-	v->setVariable("ちわわ","int");
+	v->setVariable("ちわわ","char");
+	v->setVariable("しばいぬ","string");
+	v->setVariable("ぷうどる","int");
 	v->setVariable("ぶる","bool");
 	v->setVariable("ぽめらにあん","long long");
 	v->setVariable("わんこ","main");
@@ -43,7 +44,8 @@ Data::Data(/* args */)
 	v->setVariable("よし","if");
 	v->setVariable("まて","else");
 	v->setVariable("おまわり","for");
-	
+	v->setVariable("ならんで","sort");
+	v->setVariable("ちょうだい","return");
 }
 
 void Data::setVariable(const char *c){
@@ -55,6 +57,7 @@ string Data::getVariable(const char *c){
 	setVariable(c);
 	return v->getVariableName(c);
 }
+
 Data::~Data()
 {
 }

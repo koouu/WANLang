@@ -49,6 +49,13 @@ void Analysis::doAnalysis(){
 			
 			continue;
 		}
+		if(isRESERVED3(p)){
+			//printf("add\n");
+			Token t(eRESERVED, p);
+			tokens.push_back(t);
+			p+=9;
+			continue;
+		}
 
 		if(isRESERVED2(p)){
 			//printf("add\n");
@@ -179,6 +186,12 @@ void Analysis::outCppSource(){
 			}
 			else if(tokens[i].isThisChar("｝")){
 				printf("%c",'}');
+			}
+			else if(tokens[i].isThisChar("「")){
+				printf("%c",'[');
+			}
+			else if(tokens[i].isThisChar("」")){
+				printf("%c",']');
 			}
 		}
 		i++;

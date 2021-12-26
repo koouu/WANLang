@@ -3,11 +3,29 @@
 using namespace std;
 
 //1文字のやつ
-const string RESERVED_LIST_1="＋ー＊／％（）＜＞；　＝｛｝．";
+const string RESERVED_LIST_1="＋ー＊／％（）＜＞；　＝｛｝．「」";
 //2もじのやつ
 const string RESERVED_LIST_2="＜＝＞＝＝＝！＝ー＞";
 
+//3もじのやつ
+const string RESERVED_LIST_3="＊おて";
 
+bool isRESERVED3(const char *p){
+	int fsize=9;
+	for(int i=0;i<RESERVED_LIST_3.size()/fsize;i++){
+		const char *p2=p;
+		bool f=1;
+		for(int j=0;j<fsize;j++){
+			if(RESERVED_LIST_3[i*fsize+j]!=*p2){
+				f=0;
+				break;
+			}
+			p2++;
+		}
+		if(f)return 1;
+	}
+	return 0;
+}
 
 bool isRESERVED2(const char *p){
 	int fsize=6;
@@ -45,6 +63,19 @@ bool isRESERVED1(const char *p){
 	return 0;
 }
 
+bool isFullDigit(const char *p){
+	//全角数字は1bit目-17,2bit目-68,3bit目-112~-103(0~9)
+	const char x[]="　";
+	if(*p!=-17)return 0;
+	p++;
+	if(*p!=-68)return 0;
+	p++;
+	//printf("%d\n",*p);
+	if((*p)+112<0||(*p)+112>9)return 0;
+	//printf("fa\n");
+	return 1;
+};
+
 bool isFullJP(const char *p){
 	if(*p==-29){
 		p++;
@@ -66,10 +97,12 @@ int getFullJPNum(const char *p){
 		p++;
 		ret+=((128+(*p))<<1);
 		//0~9は数字だから
-		ret+=10;
-	}else{
+		ret+=11;
+	}else if(isFullDigit(p)){
 		p+=2;
-		ret=(*p)+112;
+		ret=(*p)+113;
+	}else{
+		ret=0;
 	}
 	
 	
@@ -178,18 +211,7 @@ bool isFullSpace(const char *p){
 	return 1;
 };
 
-bool isFullDigit(const char *p){
-	//全角数字は1bit目-17,2bit目-68,3bit目-112~-103(0~9)
-	const char x[]="　";
-	if(*p!=-17)return 0;
-	p++;
-	if(*p!=-68)return 0;
-	p++;
-	//printf("%d\n",*p);
-	if((*p)+112<0||(*p)+112>9)return 0;
-	//printf("fa\n");
-	return 1;
-};
+
 
 bool isFullAdd(const char *p){
 	//全角＋ーは大きく異なる
