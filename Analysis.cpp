@@ -37,10 +37,10 @@ void Analysis::doAnalysis(){
 	
 	while(*p){
 		printf("%s\n",p);
-		if(isFullSpace(p)){
-			p+=3;
-			continue;
-		}
+		// if(isFullSpace(p)){
+		// 	p+=3;
+		// 	continue;
+		// }
 		//tab
 		if(*p==9||*p==10){
 			Token t(eRESERVED, p);
@@ -133,6 +133,10 @@ void Analysis::outCppSource(){
 			}
 
 			//1文字
+
+			else if(tokens[i].isThisChar("　")){
+				printf("%c",' ');
+			}
 			else if(tokens[i].isThisChar("＜")){
 				printf("%c",'<');
 			}
@@ -161,6 +165,9 @@ void Analysis::outCppSource(){
 			}
 			else if(tokens[i].isThisChar("；")){
 				printf("%c",';');
+			}
+			else if(tokens[i].isThisChar("＝")){
+				printf("%c",'=');
 			}
 		}
 		i++;

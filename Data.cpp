@@ -33,16 +33,20 @@ Data::Data(/* args */)
 	cnt=0;
 	v=new Variable();
 	v->setVariable("わん","cout");
+	v->setVariable("ぷーどる","string");
+	v->setVariable("ちわわ","int");
+	v->setVariable("ぶる","bool");
+	v->setVariable("ぽめらにあん","long long");
 	
 }
 
 void Data::setVariable(const char *c){
 	string var="var"+to_string(cnt);
-	v->setVariable(c,var);
-	cnt++;
+	cnt+=v->setVariable(c,var);
 }
 
 string Data::getVariable(const char *c){
+	setVariable(c);
 	return v->getVariableName(c);
 }
 Data::~Data()

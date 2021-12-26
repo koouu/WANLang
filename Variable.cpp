@@ -12,7 +12,7 @@ private:
 
 public:
 	Variable();
-	void setVariable(const char *p,string name);
+	bool setVariable(const char *p,string name);
 	string getVariableName(const char *p);
 	bool checkVariableName(const char *p);
 	~Variable();
@@ -23,17 +23,19 @@ Variable::Variable()
 	check=0;
 }
 
-void Variable::setVariable(const char *p,string name){
+bool Variable::setVariable(const char *p,string name){
 	int nextnum=getFullJPNum(p);
 	if(next[nextnum]==NULL)next[nextnum]=new Variable();
 	
 	
 	p+=3;
 	if(*p){
-		next[nextnum]->setVariable(p,name);
+		return next[nextnum]->setVariable(p,name);
 	}else{
+		if(check)return 0;
 		check=1;
 		this->name=name;
+		return 1;
 	}
 }
 

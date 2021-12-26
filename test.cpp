@@ -1,8 +1,8 @@
-
-
 #include <iostream>
 using namespace std;
 int main(){
-	cout<<10*10+(4)<<endl;
-	return 0;
+        int var0 = 10;
+        cout<<var0+10*10;
+        cout<<10*2/var0;
+        return 0;
 }
