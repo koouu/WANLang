@@ -42,6 +42,7 @@ Data::Data(/* args */)
 	v->setVariable("ついか","push_back");
 	v->setVariable("よし","if");
 	v->setVariable("まて","else");
+	v->setVariable("おまわり","for");
 	
 }
 
