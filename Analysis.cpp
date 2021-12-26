@@ -41,6 +41,14 @@ void Analysis::doAnalysis(){
 			p+=3;
 			continue;
 		}
+		//tab
+		if(*p==9){
+			Token t(eRESERVED, p);
+			tokens.push_back(t);
+			p++;
+			
+			continue;
+		}
 
 		if(isRESERVED2(p)){
 			//printf("add\n");
@@ -101,6 +109,11 @@ void Analysis::outCppSource(){
 			printf("%d",tokens[i].getval());
 		}
 		if(tokens[i].getkind()==eRESERVED){
+
+			if(*(tokens[i].getstr())==9){
+				printf("%s","	");
+			}
+
 			//2文字
 			if(tokens[i].isThisChar("＜＝")){
 				printf("%s","<=");

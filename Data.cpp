@@ -33,6 +33,7 @@ Data::Data(/* args */)
 	cnt=0;
 	v=new Variable();
 	v->setVariable("わん","cout");
+	
 }
 
 void Data::setVariable(const char *c){

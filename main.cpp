@@ -19,8 +19,8 @@ int main(int argc,char **argv){
 	ifstream ifs(argv[1]);
 	if (!ifs)
   {
-  	std::cout << "ファイルが開けませんでした。" << std::endl;
-    std::cin.get();
+  	cout << "ファイルが開けませんでした。" << std::endl;
+    cin.get();
     return 0;
   }
 	const char *txt;
