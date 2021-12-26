@@ -133,7 +133,9 @@ void Analysis::outCppSource(){
 			}
 
 			//1文字
-
+			else if(tokens[i].isThisChar("．")){
+				printf("%c",'.');
+			}
 			else if(tokens[i].isThisChar("　")){
 				printf("%c",' ');
 			}
@@ -150,10 +152,13 @@ void Analysis::outCppSource(){
 			else if(tokens[i].isThisChar("）")){
 				printf("%c",')');
 			}
+			else if(tokens[i].isThisChar("％")){
+				printf("%c",'%');
+			}
 			else if(tokens[i].isThisChar("＊")){
 				printf("%c",'*');
 			}
-			else if(tokens[i].isThisChar("・")){
+			else if(tokens[i].isThisChar("／")){
 				printf("%c",'/');
 			}
 			
