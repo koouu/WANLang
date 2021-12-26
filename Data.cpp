@@ -25,6 +25,7 @@ private:
 	~Data();
 public:
 	void setVariable(char *c);
+	string getVariable(char *c);
 };
 
 Data::Data(/* args */)
@@ -36,7 +37,11 @@ Data::Data(/* args */)
 void Data::setVariable(char *c){
 	string var="var"+to_string(cnt);
 	v->setVariable(c,var);
-	
+	cnt++;
+}
+
+string Data::getVariable(char *c){
+	return v->getVariableName(c);
 }
 Data::~Data()
 {
