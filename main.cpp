@@ -43,7 +43,6 @@ int main(int argc,char **argv){
 	
 	analysis->outCppSource();
 	
-	printf("<<endl;\n");
   printf("	return 0;\n");
   printf("}\n");
   return 0;

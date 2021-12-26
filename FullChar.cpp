@@ -3,9 +3,9 @@
 using namespace std;
 
 //1文字のやつ
-const string RESERVED_LIST_1="＋ー＊・（）＜＞";
+const string RESERVED_LIST_1="＋ー＊・（）＜＞；";
 //2もじのやつ
-const string RESERVED_LIST_2="＜＝＞＝＝＝！＝；";
+const string RESERVED_LIST_2="＜＝＞＝＝＝！＝";
 
 
 

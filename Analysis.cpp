@@ -35,14 +35,14 @@ Analysis::Analysis(const char *data)
 void Analysis::doAnalysis(){
 	const char *p=data;
 	
-	while(!compareFullChar(p,"；")){
+	while(*p){
 		printf("%s\n",p);
 		if(isFullSpace(p)){
 			p+=3;
 			continue;
 		}
 		//tab
-		if(*p==9){
+		if(*p==9||*p==10){
 			Token t(eRESERVED, p);
 			tokens.push_back(t);
 			p++;
@@ -112,6 +112,10 @@ void Analysis::outCppSource(){
 
 			if(*(tokens[i].getstr())==9){
 				printf("%s","	");
+			}
+
+			if(*(tokens[i].getstr())==10){
+				printf("%s","\n");
 			}
 
 			//2文字
