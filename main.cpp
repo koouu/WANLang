@@ -39,11 +39,11 @@ int main(int argc,char **argv){
 
   printf("#include <iostream>\n");
 	printf("using namespace std;\n");
-  printf("int main(){\n");
+  //printf("int main(){\n");
 	
 	analysis->outCppSource();
 	
-  printf("	return 0;\n");
-  printf("}\n");
+  //printf("	return 0;\n");
+  //printf("}\n");
   return 0;
 }

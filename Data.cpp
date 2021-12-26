@@ -37,6 +37,8 @@ Data::Data(/* args */)
 	v->setVariable("ちわわ","int");
 	v->setVariable("ぶる","bool");
 	v->setVariable("ぽめらにあん","long long");
+	v->setVariable("わんこ","main");
+
 	
 }
 

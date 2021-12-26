@@ -56,6 +56,7 @@ bool Variable::checkVariableName(const char *p){
 
 Variable::~Variable()
 {
+	
 }
 
 
