@@ -31,6 +31,7 @@ int main(int argc,char **argv){
     getline(ifs, buf);
     data += buf + "\n";
   }
+	data+='\0';
 	const char *p;
 	p=data.c_str();
 	Analysis *analysis=new Analysis(p);
@@ -39,7 +40,6 @@ int main(int argc,char **argv){
   printf("#include <iostream>\n");
 	printf("using namespace std;\n");
   printf("int main(){\n");
-  printf("	cout<<");
 	
 	analysis->outCppSource();
 	

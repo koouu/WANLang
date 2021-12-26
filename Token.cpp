@@ -1,10 +1,12 @@
 #include <iostream>
 #include "FullChar.cpp"
+#include "Data.cpp"
 using namespace std;
 
 enum ETokenKind{
+	eArticle,		//文
 	eRESERVED,	// 記号
-	eIDENT,		// 識別子
+	eIDENT,			// 識別子
   eNUM, 			// 整数トークン
   eEOF, 			// 入力の終わりを表すトークン
 	eSTART,			//開始
@@ -17,6 +19,7 @@ private:
   Token *next;    // 次の入力トークン
   int val;        // kindがTK_NUMの場合、その数値
   const char *str;      // トークン文字列
+	Data& data =Data::GetInstance();
 	
 public:
 	Token(ETokenKind kind, const char *str);
@@ -70,7 +73,7 @@ string Token::getIdentifier(){
 			str++;
 		}
 	}
-	return s;
+	return data.getVariable(s.c_str());
 }
 
 bool Token::isThisChar(string c){
