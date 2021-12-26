@@ -62,6 +62,15 @@ bool isRESERVED1(const char *p){
 	}
 	return 0;
 }
+bool compareFullChar(const char *p,string s){
+	
+	for(int i=0;i<s.size();i++){
+		if(!(*p))return 0;
+		if(*p!=s[i])return 0;
+		p++;
+	}
+	return 1;
+}
 
 bool isFullDigit(const char *p){
 	//全角数字は1bit目-17,2bit目-68,3bit目-112~-103(0~9)
@@ -75,6 +84,35 @@ bool isFullDigit(const char *p){
 	//printf("fa\n");
 	return 1;
 };
+
+bool isFullString(const char *&p){
+	//全角数字は1bit目-17,2bit目-68,3bit目-112~-103(0~9)
+	if(!compareFullChar(p,"”"))return 0;
+	p+=3;
+	while(*p){
+		if(compareFullChar(p,"”")){
+			p+=3;
+			return 1;
+		}
+		p++;
+	}
+	return 0;
+};
+
+string getFullString(const char *p){
+	string s="\"";
+	p+=3;
+	while(*p){
+		if(compareFullChar(p,"”")){
+			break;
+		}
+		s+=*p;
+		p++;
+	}
+	s+="\"";
+	return s;
+}
+
 
 bool isFullJP(const char *p){
 	if(*p==-29){
@@ -237,17 +275,6 @@ bool isFullAdd(const char *p){
 	}
 	return 0;
 };
-
-
-bool compareFullChar(const char *p,string s){
-	
-	for(int i=0;i<s.size();i++){
-		if(!(*p))return 0;
-		if(*p!=s[i])return 0;
-		p++;
-	}
-	return 1;
-}
 
 
 

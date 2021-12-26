@@ -79,6 +79,13 @@ void Analysis::doAnalysis(){
 			tokens.push_back(t);
 			continue;
 		}
+		p2=p;
+		if(isFullString(p2)){
+			Token t(eRESERVED, p);
+			p=p2;
+			tokens.push_back(t);
+			continue;
+		}
 
 
 
@@ -192,6 +199,9 @@ void Analysis::outCppSource(){
 			}
 			else if(tokens[i].isThisChar("」")){
 				printf("%c",']');
+			}
+			else if(tokens[i].isThisChar("”")){
+				printf("%s",getFullString(tokens[i].getstr()).c_str());
 			}
 		}
 		i++;
