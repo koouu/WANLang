@@ -14,12 +14,15 @@ private:
 	//Token *head;
 	//Node node;
 	vector<Token> tokens;
+	ETokenKind lastT;
+	int ncnt;
 public:
 	Analysis(const char *data);
 	void doAnalysis();
 	vector<Token> getTokens();
 	void outCppSource();
 	~Analysis();
+	void checkSyntax(ETokenKind nowT);
 };
 
 
@@ -28,13 +31,22 @@ Analysis::Analysis(const char *data)
 	this->data=data;
 	s="";
 }
+void Analysis::checkSyntax(ETokenKind nowT){
+	if(lastT==eCOMMENT)
+	if(lastT==nowT){
+		printf("%d行目が構文エラーだワン\n",ncnt+1);
+		exit(1);
+	}
+	
+}
 
 
 
 
 void Analysis::doAnalysis(){
 	const char *p=data;
-	int ncnt=0;
+	ncnt=0;
+	lastT=eSTART;
 	while(*p){
 		//printf("%s\n",p);
 		// if(isFullSpace(p)){
@@ -43,18 +55,22 @@ void Analysis::doAnalysis(){
 		// }
 		//tab
 		if(*p==9||*p==10){
-			if(*p==10)ncnt++;
-			Token t(eRESERVED, p);
+			if(*p==10){ncnt++;lastT=eCOMMENT;}
+			Token t(eCOMMENT, p);
 			tokens.push_back(t);
 			p++;
+			
+			
 			
 			continue;
 		}
 
 		if(compareFullChar(p,"※")){
-			Token t(eRESERVED, p);
+			Token t(eCOMMENT, p);
 			tokens.push_back(t);
 			commentOut(p);
+			lastT=eCOMMENT;
+
 			continue;
 		}
 		if(isRESERVED3(p)){
@@ -62,6 +78,8 @@ void Analysis::doAnalysis(){
 			Token t(eRESERVED, p);
 			tokens.push_back(t);
 			p+=9;
+			checkSyntax(eRESERVED);
+			lastT=eRESERVED;
 			continue;
 		}
 
@@ -70,6 +88,8 @@ void Analysis::doAnalysis(){
 			Token t(eRESERVED, p);
 			tokens.push_back(t);
 			p+=6;
+			checkSyntax(eRESERVED);
+			lastT=eRESERVED;
 			continue;
 		}
 		
@@ -78,30 +98,35 @@ void Analysis::doAnalysis(){
 			Token t(eRESERVED, p);
 			tokens.push_back(t);
 			p+=3;
+			checkSyntax(eRESERVED);
+			lastT=eRESERVED;
 			continue;
 		}
 		const char *p2=p;
 		if(isIdentifier(p2)){
 			Token t(eIDENT, p);
 			p=p2;
+			checkSyntax(eIDENT);
 			tokens.push_back(t);
+			lastT=eIDENT;
 			continue;
 		}
 		p2=p;
 		if(isFullString(p2)){
-			Token t(eRESERVED, p);
+			Token t(eArticle, p);
 			p=p2;
 			tokens.push_back(t);
+			checkSyntax(eArticle);
+			lastT=eArticle;
 			continue;
 		}
-
-
-
 		if(isFullDigit(p)){
 			//printf("dig\n");
 			Token t(eNUM, p);
 			t.setval(getnum(p));
 			tokens.push_back(t);
+			checkSyntax(eNUM);
+			lastT=eIDENT;
 			continue;
 		}
 		printf("%d行目がわからないワン\n",ncnt+1);
@@ -134,15 +159,21 @@ void Analysis::outCppSource(){
 		if(tokens[i].getkind()==eNUM){
 			ofs<<tokens[i].getval();
 		}
-		if(tokens[i].getkind()==eRESERVED){
-
+		if(tokens[i].getkind()==eCOMMENT){
 			if(*(tokens[i].getstr())==9){
 				ofs<<"	";
 			}
 
 			if(*(tokens[i].getstr())==10){
-				ofs<<"\n";
+				ofs<<endl;
 			}
+		}
+		if(tokens[i].isThisChar("”")){
+				ofs<<getFullString(tokens[i].getstr()).c_str();
+		}
+		if(tokens[i].getkind()==eRESERVED){
+
+			
 
 			//2文字
 			if(tokens[i].isThisChar("＜＝")){
@@ -250,12 +281,11 @@ void Analysis::outCppSource(){
 				ofs<<'!';
 			}
 			
-			else if(tokens[i].isThisChar("”")){
-				ofs<<getFullString(tokens[i].getstr()).c_str();
-			}
+			
 		}
 		i++;
 	}
+	ofs.close();
 }
 
 Analysis::~Analysis()

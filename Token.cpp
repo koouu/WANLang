@@ -9,7 +9,8 @@ enum ETokenKind{
 	eIDENT,			// 識別子
   eNUM, 			// 整数トークン
   eEOF, 			// 入力の終わりを表すトークン
-	eSTART,			//開始
+	eSTART,			// 開始
+	eCOMMENT,		// 改行など
 };
 
 class Token
