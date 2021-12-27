@@ -121,113 +121,117 @@ vector<Token> Analysis::getTokens(){
 void Analysis::outCppSource(){
 	const char *p=data;
 	int i=0;
+	ofstream ofs("cppfile.cpp");
+	ofs<<"#include <bits/stdc++.h>\n";
+	ofs<<"using namespace std;\n";	
+
 	
 	while(tokens[i].getkind()!=eEOF){
 		if(tokens[i].getkind()==eIDENT){
-			cout<<tokens[i].getIdentifier();
+			ofs<<tokens[i].getIdentifier();
 		}
 		if(tokens[i].getkind()==eNUM){
-			printf("%d",tokens[i].getval());
+			ofs<<tokens[i].getval();
 		}
 		if(tokens[i].getkind()==eRESERVED){
 
 			if(*(tokens[i].getstr())==9){
-				printf("%s","	");
+				ofs<<"	";
 			}
 
 			if(*(tokens[i].getstr())==10){
-				printf("%s","\n");
+				ofs<<"\n";
 			}
 
 			//2文字
 			if(tokens[i].isThisChar("＜＝")){
-				printf("%s","<=");
+				ofs<<"<=";
 			}
 			else if(tokens[i].isThisChar("＞＝")){
-				printf("%s",">=");
+				ofs<<">=";
 			}
 			else if(tokens[i].isThisChar("！＝")){
-				printf("%s","!=");
+				ofs<<"!=";
 			}
 			else if(tokens[i].isThisChar("＝＝")){
-				printf("%s","==");
+				ofs<<"==";
 			}
 
 			//1文字
 			else if(tokens[i].isThisChar("．")){
-				printf("%c",'.');
+				ofs<<'.';
 			}
 			else if(tokens[i].isThisChar("　")){
-				printf("%c",' ');
+				ofs<<' ';
 			}
 			else if(tokens[i].isThisChar("＜")){
-				printf("%c",'<');
+				ofs<<'<';
 			}
 			else if(tokens[i].isThisChar("＞")){
-				printf("%c",'>');
+				ofs<<'>';
 			}
 
 			else if(tokens[i].isThisChar("（")){
-				printf("%c",'(');
+				ofs<<'(';
 			}
 			else if(tokens[i].isThisChar("）")){
-				printf("%c",')');
+				ofs<<')';
 			}
 			else if(tokens[i].isThisChar("％")){
-				printf("%c",'%');
+				ofs<<'%';
 			}
 			else if(tokens[i].isThisChar("＊")){
-				printf("%c",'*');
+				ofs<<'*';
 			}
 			else if(tokens[i].isThisChar("／")){
-				printf("%c",'/');
+				ofs<<'/';
 			}
 			
 			else if(tokens[i].isThisChar("＋")){
-				printf("%c",'+');
+				ofs<<'+';
 			}
 			else if(tokens[i].isThisChar("ー")){
-				printf("%c",'-');
+				ofs<<'-';
 			}
 			else if(tokens[i].isThisChar("。")){
-				printf("%c",';');
+				ofs<<';';
 			}
 			else if(tokens[i].isThisChar("、")){
-				printf("%c",',');
+				ofs<<',';
 			}
 			else if(tokens[i].isThisChar("＝")){
-				printf("%c",'=');
+				ofs<<'=';
 			}
 			else if(tokens[i].isThisChar("｛")){
-				printf("%c",'{');
+				ofs<<'{';
 			}
 			else if(tokens[i].isThisChar("｝")){
-				printf("%c",'}');
+				ofs<<'}';
 			}
 			else if(tokens[i].isThisChar("「")){
-				printf("%c",'[');
+				ofs<<'[';
 			}
 			else if(tokens[i].isThisChar("」")){
-				printf("%c",']');
+				ofs<<']';
 			}
 			else if(tokens[i].isThisChar("※")){
-				printf("%s",getCommentOut(tokens[i].getstr()).c_str());
+				ofs<<getCommentOut(tokens[i].getstr()).c_str();
 			}
 			else if(tokens[i].isThisChar("＆")){
-				printf("%c",'&');
+				ofs<<'&';
 			}
 			else if(tokens[i].isThisChar("｜")){
-				printf("%c",'|');
+				ofs<<'|';
 			}
 			else if(tokens[i].isThisChar("～")){
-				printf("%c",'~');
+				ofs<<'~';
 			}
 			else if(tokens[i].isThisChar("！")){
-				printf("%c",'!');
+				ofs<<'!';
 			}
 			
 			else if(tokens[i].isThisChar("”")){
-				printf("%s",getFullString(tokens[i].getstr()).c_str());
+				ofs<<getFullString(tokens[i].getstr()).c_str();
 			}
 		}
 		i++;

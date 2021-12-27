@@ -7,5 +7,6 @@
 		"istream": "cpp",
 		"tuple": "cpp",
 		"iosfwd": "cpp"
-	}
+	},
+	"C_Cpp.errorSquiggles": "Disabled"
 }
