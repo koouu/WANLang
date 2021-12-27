@@ -3,7 +3,7 @@
 using namespace std;
 
 //1文字のやつ
-const string RESERVED_LIST_1="＋ー＊／％（）＜＞。、　＝｛｝．「」※";
+const string RESERVED_LIST_1="＋ー＊／％（）＜＞。、　＝｛｝．「」";
 //2もじのやつ
 const string RESERVED_LIST_2="＜＝＞＝＝＝！＝ー＞";
 
@@ -70,6 +70,22 @@ bool compareFullChar(const char *p,string s){
 		p++;
 	}
 	return 1;
+}
+
+string getCommentOut(const char *p){
+	string s="//";
+	p+=3;
+	while(*p!='\n'){
+		s+=*p;
+		p++;
+	}
+	return s;
+}
+
+void commentOut(const char *&p){
+	while(*p!='\n'){
+		p++;
+	}
 }
 
 bool isFullDigit(const char *p){

@@ -49,6 +49,13 @@ void Analysis::doAnalysis(){
 			
 			continue;
 		}
+
+		if(compareFullChar(p,"※")){
+			Token t(eRESERVED, p);
+			tokens.push_back(t);
+			commentOut(p);
+			continue;
+		}
 		if(isRESERVED3(p)){
 			//printf("add\n");
 			Token t(eRESERVED, p);
@@ -204,7 +211,7 @@ void Analysis::outCppSource(){
 				printf("%c",']');
 			}
 			else if(tokens[i].isThisChar("※")){
-				printf("%s","//");
+				printf("%s",getCommentOut(tokens[i].getstr()).c_str());
 			}
 			else if(tokens[i].isThisChar("”")){
 				printf("%s",getFullString(tokens[i].getstr()).c_str());
