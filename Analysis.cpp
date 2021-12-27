@@ -213,6 +213,16 @@ void Analysis::outCppSource(){
 			else if(tokens[i].isThisChar("※")){
 				printf("%s",getCommentOut(tokens[i].getstr()).c_str());
 			}
+			else if(tokens[i].isThisChar("＆")){
+				printf("%c",'&');
+			}
+			else if(tokens[i].isThisChar("｜")){
+				printf("%c",'|');
+			}
+			else if(tokens[i].isThisChar("～")){
+				printf("%c",'~');
+			}
+			
 			else if(tokens[i].isThisChar("”")){
 				printf("%s",getFullString(tokens[i].getstr()).c_str());
 			}
