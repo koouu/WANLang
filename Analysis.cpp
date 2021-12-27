@@ -34,15 +34,16 @@ Analysis::Analysis(const char *data)
 
 void Analysis::doAnalysis(){
 	const char *p=data;
-	
+	int ncnt=0;
 	while(*p){
-		printf("%s\n",p);
+		//printf("%s\n",p);
 		// if(isFullSpace(p)){
 		// 	p+=3;
 		// 	continue;
 		// }
 		//tab
 		if(*p==9||*p==10){
+			if(*p==10)ncnt++;
 			Token t(eRESERVED, p);
 			tokens.push_back(t);
 			p++;
@@ -103,7 +104,7 @@ void Analysis::doAnalysis(){
 			tokens.push_back(t);
 			continue;
 		}
-		printf("トークナイズできません\n");
+		printf("%d行目がわからないワン\n",ncnt+1);
 		exit(1);
 	}
 	tokens.push_back(Token(eEOF,p));

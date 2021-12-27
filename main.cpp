@@ -13,13 +13,13 @@ using namespace std;
 int main(int argc,char **argv){
 	
   if (argc != 2) {
-    printf("引数が足りません\n");
+    printf("引数にファイルを書いてほしいワン\n");
     return 1;
   }
 	ifstream ifs(argv[1]);
 	if (!ifs)
   {
-  	cout << "ファイルが開けませんでした。" << std::endl;
+  	cout << "ファイルが開けないワン。" << std::endl;
     cin.get();
     return 0;
   }
