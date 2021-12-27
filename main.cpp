@@ -37,8 +37,8 @@ int main(int argc,char **argv){
 	Analysis *analysis=new Analysis(p);
 	analysis->doAnalysis();
 
-  printf("#include <bits/stdc++.h>\n");
-	printf("using namespace std;\n");
+  //printf("#include <bits/stdc++.h>\n");
+	//printf("using namespace std;\n");
   //printf("int main(){\n");
 	
 	analysis->outCppSource();

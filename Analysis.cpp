@@ -156,6 +156,25 @@ void Analysis::outCppSource(){
 			else if(tokens[i].isThisChar("＝＝")){
 				ofs<<"==";
 			}
+			else if(tokens[i].isThisChar("＋＋")){
+				ofs<<"++";
+			}
+			else if(tokens[i].isThisChar("＋＝")){
+				ofs<<"+=";
+			}
+			else if(tokens[i].isThisChar("ーー")){
+				ofs<<"--";
+			}
+
+			else if(tokens[i].isThisChar("ー＝")){
+				ofs<<"-=";
+			}
+			else if(tokens[i].isThisChar("＊＝")){
+				ofs<<"*=";
+			}
+			else if(tokens[i].isThisChar("／＝")){
+				ofs<<"/=";
+			}
 
 			//1文字
 			else if(tokens[i].isThisChar("．")){
