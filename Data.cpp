@@ -46,6 +46,9 @@ Data::Data(/* args */)
 	v->setVariable("おまわり","for");
 	v->setVariable("ならんで","sort");
 	v->setVariable("ちょうだい","return");
+	v->setVariable("きゃっち","cin");
+	v->setVariable("ばーん","break");
+	v->setVariable("おおがたけん","(1<<30)");
 }
 
 void Data::setVariable(const char *c){

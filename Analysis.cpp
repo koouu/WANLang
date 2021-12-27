@@ -182,7 +182,7 @@ void Analysis::outCppSource(){
 			else if(tokens[i].isThisChar("ー")){
 				printf("%c",'-');
 			}
-			else if(tokens[i].isThisChar("；")){
+			else if(tokens[i].isThisChar("。")){
 				printf("%c",';');
 			}
 			else if(tokens[i].isThisChar("＝")){
