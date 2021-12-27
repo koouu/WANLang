@@ -20,8 +20,7 @@ int main(int argc,char **argv){
 	if (!ifs)
   {
   	cout << "ファイルが開けないワン。" << std::endl;
-    cin.get();
-    return 0;
+    return 1;
   }
 	const char *txt;
 	
