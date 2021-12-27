@@ -49,6 +49,8 @@ Data::Data(/* args */)
 	v->setVariable("きゃっち","cin");
 	v->setVariable("ばーん","break");
 	v->setVariable("おおがたけん","(1<<30)");
+	v->setVariable("おかわり","continue");
+	v->setVariable("おすわり","endl");
 }
 
 void Data::setVariable(const char *c){
