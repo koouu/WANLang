@@ -7,6 +7,6 @@ $make main
 記述したファイルの実行方法
 ```
 $./main ファイル名.dog
-$c++ ファイル名.cpp
-$./出力されたファイル
+$c++ -o cppfile.out cppfile.cpp
+$./cppfile.out
 ```
