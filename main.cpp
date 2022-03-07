@@ -19,7 +19,7 @@ int main(int argc,char **argv){
 	ifstream ifs(argv[1]);
 	if (!ifs)
   {
-  	cout << "ファイルが開けないワン。" << std::endl;
+  	cout << "ファイルが開けないワン" << std::endl;
     return 1;
   }
 	const char *txt;
@@ -35,14 +35,8 @@ int main(int argc,char **argv){
 	p=data.c_str();
 	Analysis *analysis=new Analysis(p);
 	analysis->doAnalysis();
-
-  //printf("#include <bits/stdc++.h>\n");
-	//printf("using namespace std;\n");
-  //printf("int main(){\n");
 	
 	analysis->outCppSource();
 	
-  //printf("	return 0;\n");
-  //printf("}\n");
   return 0;
 }
